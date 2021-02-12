@@ -53,7 +53,7 @@ public class Coworker{
 
     public void addIntervalToDaysOff(Interval interval){
         int lengthOfInterval = interval.getNumberOfWorkdays();
-        if ((this.numberOfDaysOff > 0) && this.reduceDaysOff(lengthOfInterval)>0){
+        if ((this.numberOfDaysOff > 0) && this.getNumberOfDaysOff()-lengthOfInterval>0){
             if (daysOff.contains(interval)){
                 System.out.println("Interval adding failed. Interval already existing.");
             }else{
