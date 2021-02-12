@@ -14,11 +14,10 @@ public class Interval {
         this.endDate = endDate;
     }
 
-    //Delete later, no need of 2 constructors
-    public Interval(){
-
-    }
-
+    /**
+     * The function iterates over given interval between start and end and adds the LocalDate object only if it's not equal Saturday or Sunday.
+     * @return returns the number of workdays between the start and end dates of Object Interval
+     */
 
     public int getNumberOfWorkdays(){
         LocalDate date= this.startDate;

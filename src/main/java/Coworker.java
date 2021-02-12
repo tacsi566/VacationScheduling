@@ -5,8 +5,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Coworker{
     private static final AtomicInteger count = new AtomicInteger(0);
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private String team;
     private int replacementFor;
     private int numberOfDaysOff;
@@ -37,6 +37,15 @@ public class Coworker{
         return numberOfDaysOff;
     }
 
+    public int getId(){
+        return  id;
+    }
+
+    /**
+     *
+     * @param reduceBy is the number of days to reduce by a workers number of days off.
+     * @return the number of days left
+     */
     public int reduceDaysOff(int reduceBy){
         if (numberOfDaysOff-reduceBy <= 0){
             return 0;
@@ -47,10 +56,18 @@ public class Coworker{
 
     }
 
+    /**
+     * Resets the available days off on the annual occurrence of signing the contract.
+     */
     public void resetNumberOfDaysOff(){
         this.numberOfDaysOff = 40;
     }
 
+
+    /**
+     * The interval is only added to the Set of Intervals, if and only if the employee has available days off and the amount of days off covers the number of workdays in given Interval.
+     * @param interval contains the start and end date of when the employee wants to go on vacation
+     */
     public void addIntervalToDaysOff(Interval interval){
         int lengthOfInterval = interval.getNumberOfWorkdays();
         if ((this.numberOfDaysOff > 0) && this.getNumberOfDaysOff()-lengthOfInterval>0){
@@ -66,6 +83,9 @@ public class Coworker{
         }
     }
 
+    /**
+     * Prints all intervals where the employee has requested days off.
+     */
     public void printDaysOff(){
         for (Interval i : daysOff){
             System.out.println("Start date: " + i.startDate);
@@ -75,7 +95,5 @@ public class Coworker{
 
 
 
-    public int getId(){
-        return  id;
-    }
+
 }

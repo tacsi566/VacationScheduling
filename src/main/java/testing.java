@@ -16,7 +16,7 @@ public class testing {
         System.out.println(worker.getNumberOfDaysOff());
         worker.addIntervalToDaysOff(interval1);
         System.out.println(worker.getNumberOfDaysOff());
-        //worker.printDaysOff();
+        worker.printDaysOff();
     }
 }
 
