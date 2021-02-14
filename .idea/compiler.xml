@@ -9,8 +9,6 @@
         <module name="VacationScheduling" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
-      <module name="VacationScheduling" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>

@@ -1,9 +1,12 @@
 
+
 import java.time.LocalDate;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
+
+
 
 public class Interval {
     LocalDate startDate;
@@ -18,6 +21,10 @@ public class Interval {
      * The function iterates over given interval between start and end and adds the LocalDate object only if it's not equal Saturday or Sunday.
      * @return returns the number of workdays between the start and end dates of Object Interval
      */
+
+    public LocalDate getStartDate(){
+        return this.startDate;
+    }
 
     public int getNumberOfWorkdays(){
         LocalDate date= this.startDate;
@@ -36,7 +43,12 @@ public class Interval {
         return days.size();
     }
 
+    public void printInterval (){
+        System.out.println("From "+this.startDate + " to " + this.endDate);
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "From " + this.startDate + " to " + this.endDate;
+    }
 }
