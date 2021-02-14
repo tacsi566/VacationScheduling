@@ -1,3 +1,8 @@
+import org.apache.commons.collections.MultiMap;
+import org.apache.commons.collections.map.MultiValueMap;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -7,10 +12,12 @@ public class Coworker{
     private static final AtomicInteger count = new AtomicInteger(0);
     private final int id;
     private final String name;
-    private String team;
-    private int replacementFor;
+    private final String team;
+    private final int replacementFor;
     private int numberOfDaysOff;
-    private Set<Interval> daysOff= new HashSet<>();
+    private final Set<Interval> daysOff= new HashSet<>();
+    public MultiMap allIntervals = new MultiValueMap();
+    private final ArrayList<Integer> allEmployees = new ArrayList<>();
 
 
     public Coworker(String name, String team, int replacementFor, int numberOfDaysOff){
@@ -19,6 +26,7 @@ public class Coworker{
         this.replacementFor = replacementFor;
         this.numberOfDaysOff = numberOfDaysOff;
         id = count.incrementAndGet();
+        allEmployees.add(this.id);
     }
 
     public String getName() {
@@ -39,6 +47,10 @@ public class Coworker{
 
     public int getId(){
         return  id;
+    }
+
+    public MultiMap getAllIntervals (){
+        return allIntervals;
     }
 
     /**
@@ -77,6 +89,8 @@ public class Coworker{
                 int daysOffRemaining = this.reduceDaysOff(lengthOfInterval);
                 daysOff.add(interval);
                 System.out.println("Interval added successfully. Number of days off remaining: " + daysOffRemaining);
+                allIntervals.put(this.id, interval);
+                System.out.println(allIntervals.get(this.getId()).toString());
             }
         }else {
             System.out.println("Worker " + this.name + " doesn't have enough days off.");
@@ -93,7 +107,16 @@ public class Coworker{
         }
     }
 
-
-
+    /**
+     * Removes employee from the ArrayList of employees and deletes all booked vacations if any.
+     */
+    public void removeEmployee(){
+        if (allEmployees.contains(Integer.valueOf(this.id))){
+            allEmployees.remove(Integer.valueOf(this.id));
+            allIntervals.remove(this.id);
+        }else{
+            System.out.println("Employee not on board or already deleted.");
+        }
+    }
 
 }
