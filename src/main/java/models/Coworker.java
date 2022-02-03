@@ -4,7 +4,6 @@ import org.apache.commons.collections.MultiMap;
 import org.apache.commons.collections.map.MultiValueMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -104,8 +103,7 @@ public class Coworker{
      */
     public void printDaysOff(){
         for (Interval i : daysOff){
-            System.out.println("Start date: " + i.startDate);
-            System.out.println("End date: " + i.endDate);
+            System.out.println(i.toString());
         }
     }
 
@@ -113,7 +111,7 @@ public class Coworker{
      * Removes employee from the ArrayList of employees and deletes all booked vacations if any.
      */
     public void removeEmployee(){
-        if (allEmployees.contains(Integer.valueOf(this.id))){
+        if (allEmployees.contains(this.id)){
             allEmployees.remove(Integer.valueOf(this.id));
             allIntervals.remove(this.id);
         }else{

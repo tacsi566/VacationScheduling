@@ -43,10 +43,6 @@ public class Interval {
         return days.size();
     }
 
-    public void printInterval (){
-        System.out.println("From "+this.startDate + " to " + this.endDate);
-    }
-
     @Override
     public String toString() {
         return "From " + this.startDate + " to " + this.endDate;
