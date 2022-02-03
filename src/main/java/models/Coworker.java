@@ -1,3 +1,5 @@
+package models;
+
 import org.apache.commons.collections.MultiMap;
 import org.apache.commons.collections.map.MultiValueMap;
 
@@ -77,18 +79,18 @@ public class Coworker{
 
 
     /**
-     * The interval is only added to the Set of Intervals, if and only if the employee has available days off and the amount of days off covers the number of workdays in given Interval.
+     * The interval is only added to the Set of Intervals, if and only if the employee has available days off and the amount of days off covers the number of workdays in given models.Interval.
      * @param interval contains the start and end date of when the employee wants to go on vacation
      */
     public void addIntervalToDaysOff(Interval interval){
         int lengthOfInterval = interval.getNumberOfWorkdays();
         if ((this.numberOfDaysOff > 0) && this.getNumberOfDaysOff()-lengthOfInterval>0){
             if (daysOff.contains(interval)){
-                System.out.println("Interval adding failed. Interval already existing.");
+                System.out.println("models.Interval adding failed. models.Interval already existing.");
             }else{
                 int daysOffRemaining = this.reduceDaysOff(lengthOfInterval);
                 daysOff.add(interval);
-                System.out.println("Interval added successfully. Number of days off remaining: " + daysOffRemaining);
+                System.out.println("models.Interval added successfully. Number of days off remaining: " + daysOffRemaining);
                 allIntervals.put(this.id, interval);
                 System.out.println(allIntervals.get(this.getId()).toString());
             }
