@@ -1,4 +1,4 @@
-
+package models;
 
 import java.time.LocalDate;
 import java.time.DayOfWeek;
@@ -19,7 +19,7 @@ public class Interval {
 
     /**
      * The function iterates over given interval between start and end and adds the LocalDate object only if it's not equal Saturday or Sunday.
-     * @return returns the number of workdays between the start and end dates of Object Interval
+     * @return returns the number of workdays between the start and end dates of Object models.Interval
      */
 
     public LocalDate getStartDate(){
@@ -41,10 +41,6 @@ public class Interval {
         }
 
         return days.size();
-    }
-
-    public void printInterval (){
-        System.out.println("From "+this.startDate + " to " + this.endDate);
     }
 
     @Override
